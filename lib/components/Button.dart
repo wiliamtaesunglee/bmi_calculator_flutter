@@ -1,8 +1,7 @@
-import 'package:bmi_calculator/resultsPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class BottomButton extends StatelessWidget {
   const BottomButton({Key? key, required this.label, required this.onPress}) : super(key: key);
@@ -17,7 +16,7 @@ class BottomButton extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.only(bottom: 20.0),
+        padding: const EdgeInsets.only(bottom: 20.0),
         child: Text(
           label,
           style: KButtonLabelTextStyle,

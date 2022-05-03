@@ -1,25 +1,32 @@
-import 'package:bmi_calculator/Button.dart';
-import 'package:bmi_calculator/Input.dart';
+import 'package:bmi_calculator/components/Button.dart';
+import 'package:bmi_calculator/components/Input.dart';
 import 'package:bmi_calculator/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
+  const ResultPage({Key? key, required this.bmiResult, required this.resultText, required this.interpretation}) : super(key: key);
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Calculator'),
+        title: const Text('BMI Calculator'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Expanded(
-            flex: 1,
-            child: Text(
-              'Your Result',
-              style: kTitleTextStyle,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
+              child: const Text(
+                'Your Result',
+                style: kTitleTextStyle,
+              ),
             ),
           ),
           Expanded(
@@ -29,17 +36,17 @@ class ResultPage extends StatelessWidget {
               inputChildren: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    'hello',
+                    resultText,
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.0',
+                    bmiResult,
                     style: kBMITextStyle,
                   ),
                   Text(
-                    'Your BMI result is quite low, you should eat more!',
+                    interpretation,
                     textAlign: TextAlign.center,
                     style: kBodyTextStyle,
                   ),
@@ -47,9 +54,12 @@ class ResultPage extends StatelessWidget {
               ),
             ),
           ),
-          BottomButton(label: 'label', onPress: () {
-
-          })
+          BottomButton(
+            label: 'RE-CALCULATE',
+            onPress: () {
+              Navigator.pop(context);
+            },
+          )
         ],
       ),
     );
